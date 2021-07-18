@@ -19,6 +19,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var aboutMeTxt: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var createAcBtn: UIButton!
+    @IBOutlet weak var checkButton: UIButton!
     
     var visiblePasswordClick = true
     var user: User?
@@ -29,6 +30,7 @@ class RegisterViewController: UIViewController {
         setTitle()
         setBackButton()
         txtFieldsAndButtonLooks()
+        createAccountButtonEnable()
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
             view.addGestureRecognizer(tap)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
@@ -97,6 +99,8 @@ class RegisterViewController: UIViewController {
     }
     
     private func createAccountButtonEnable() {
+        checkButton.isEnabled = false
+        checkButton.alpha = 0.4
         createAcBtn.isEnabled = false
         createAcBtn.alpha = 0.4
         let textFieldArray = [firstNameTxt, lastNameTxt, emailTxt, passTxt, confirmPassTxt]
@@ -113,12 +117,14 @@ class RegisterViewController: UIViewController {
             }
         }
         guard let email = emailTxt.text, !email.isEmpty, let pass = passTxt.text, !pass.isEmpty, let confirmPass = confirmPassTxt.text, !confirmPass.isEmpty else {
+            checkButton.isEnabled = false
+            checkButton.alpha = 0.4
             createAcBtn.isEnabled = false
             createAcBtn.alpha = 0.4
             return
         }
-        createAcBtn.isEnabled = true
-        createAcBtn.alpha = 1
+        checkButton.isEnabled = true
+        checkButton.alpha = 1
     }
     //MARK: - Image Picker Functions -
     
@@ -291,12 +297,27 @@ class RegisterViewController: UIViewController {
         visiblePasswordClick = !visiblePasswordClick
     }
     
-    
+    @IBAction func checkAction(_ sender: UIButton) {
+        if !sender.isSelected {
+            createAcBtn.isEnabled = true
+            createAcBtn.alpha = 1
+        } else {
+            createAcBtn.isEnabled = false
+            createAcBtn.alpha = 0.4
+        }
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        }) { (success) in
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {
+                sender.isSelected = !sender.isSelected
+                sender.transform = .identity
+            }, completion: nil)
+        }
+    }
     
     @IBAction func logInAction(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
     
     @IBAction func photoAction(_ sender: UIButton) {
         openActionSheet()

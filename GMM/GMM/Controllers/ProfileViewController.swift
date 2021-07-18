@@ -7,8 +7,9 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -176,6 +177,16 @@ private func loadUserData() {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+    @IBAction func feedBackActionButton(_ sender: UIButton) {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients(["xdenizadil@gmail.com"])
+        mailComposerVC.setSubject("GMM Feedback")
+        mailComposerVC.setMessageBody("Body", isHTML: false)
+        self.present(mailComposerVC, animated: true, completion: nil)
+    }
+    
+    
 @IBAction func deleteAccountButtonAction(_ sender: UIButton) {
     deleteAccount()
 }
@@ -183,4 +194,5 @@ private func loadUserData() {
 @IBAction func logOutButtonAction(_ sender: UIButton) {
     self.logoutAlert()
 }
+    
 }
