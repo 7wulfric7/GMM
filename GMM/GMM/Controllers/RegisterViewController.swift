@@ -287,6 +287,7 @@ class RegisterViewController: UIViewController {
             passTxt.isSecureTextEntry = true
         }
         visiblePasswordClick = !visiblePasswordClick
+        sender.isSelected = !sender.isSelected
     }
     @IBAction func visibleConfirmPassAction(_ sender: UIButton) {
         if (visiblePasswordClick == true) {
@@ -295,6 +296,7 @@ class RegisterViewController: UIViewController {
             confirmPassTxt.isSecureTextEntry = true
         }
         visiblePasswordClick = !visiblePasswordClick
+        sender.isSelected = !sender.isSelected
     }
     
     @IBAction func checkAction(_ sender: UIButton) {

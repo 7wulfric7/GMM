@@ -164,6 +164,7 @@ class WelcomeViewController: UIViewController {
             passwordText.isSecureTextEntry = true
         }
         visiblePasswordClick = !visiblePasswordClick
+        sender.isSelected = !sender.isSelected
     }
     @IBAction func forgotPassAction(_ sender: UIButton) {
         let vc = Utilities.shared.getControllerForStoryboard(storyboard: "Main", controllerIdentifier: "ForgotPasswordViewController")
