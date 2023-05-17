@@ -14,7 +14,7 @@ class StorageManager: NSObject {
     static let shared = StorageManager()
     
     let storage = Storage.storage()
-    let storageRef = StorageReference()
+    let storageRef = Storage.storage().reference()
     
     
     func uploadProfileImage(image: UIImage, completion: @escaping () -> Void, completionError: @escaping (Error?) -> Void){

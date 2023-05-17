@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 
+protocol ShowUpdateMessageDelegate: AnyObject {
+    func showMessage()
+}
+
 class ProfileInformationViewController: UIViewController {
 
     @IBOutlet weak var firstName: UITextField!
@@ -17,6 +21,7 @@ class ProfileInformationViewController: UIViewController {
     
     var user: User?
     private var pickedImage: UIImage?
+    var delegate: ShowUpdateMessageDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,7 +210,8 @@ class ProfileInformationViewController: UIViewController {
     @IBAction func updateAccount(_ sender: UIButton) {
         updateUser()
         setupProfileImage()
-        CustomToast.show(message: "Profile info updated.", bgColor: .lightGray, textColor: .black, labelFont: UIFont.boldSystemFont(ofSize: 14), showIn: .bottom, controller: self)
+        self.delegate?.showMessage()
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -225,4 +231,4 @@ extension ProfileInformationViewController: UIImagePickerControllerDelegate, UIN
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-}
+} 

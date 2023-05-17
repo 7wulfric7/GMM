@@ -9,12 +9,13 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
-    @IBOutlet var movieTitle: UILabel!
-    @IBOutlet var movieYear: UILabel!
-    @IBOutlet var moviePoster: UIImageView!
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var movieYear: UILabel!
+    @IBOutlet weak var moviePoster: UIImageView!
+    @IBOutlet weak var overview: UILabel!
     
     static let identifier = "MovieTableViewCell"
-    
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -27,15 +28,20 @@ class MovieTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: "MovieTableViewCell", bundle: nil)
     }
-    
+
     func update(with model: Movie) {
         self.movieTitle.text = model.title
-        self.movieYear.text = "Year: \(model.year)"
-        let posterURL = model.poster
-        if let data = try? Data(contentsOf: URL(string: posterURL)!) {
-            self.moviePoster.image = UIImage(data: data)
-        } else {
-            self.moviePoster.image = UIImage(named: "splashBackground")
+        self.overview.text = "Description: \(model.overview ?? "N/A")"
+        self.movieYear.text = "Year: \(Utilities.shared.showYear(releaseDate: model.release_date ?? "N/A"))"
+        if let posterURL = URL(string: "https://image.tmdb.org/t/p/original/\(model.poster_path ?? "")") {
+            ApiManager.shared.getMoviePoster(url: posterURL) { img in
+                DispatchQueue.main.async {
+                    self.moviePoster.image = img
+                }
+            }
         }
     }
+
+
+
 }

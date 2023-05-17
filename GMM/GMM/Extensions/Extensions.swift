@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import FirebaseUI
+import FirebaseStorageUI
 
 //MARK: - Date Extension -
 

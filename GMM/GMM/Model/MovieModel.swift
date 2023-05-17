@@ -8,18 +8,18 @@
 import Foundation
 
 struct MovieResult: Codable {
-    let Search: [Movie]
+    let results: [Movie]
 }
 
 struct Movie: Codable {
-    let title: String
-    let year: String
-    let imdbID: String
-    let type: String
-    let poster: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case title = "Title", year = "Year", imdbID, type = "Type", poster = "Poster"
-    }
+    let title: String?
+    let id: Int
+    let release_date: String?
+    let poster_path: String?
+    let overview: String?
+    //There was no need of CodingKeys because I have them copied from the JSON
 }
 
+struct IMDBMovieID: Codable {
+    let imdb_id: String
+}
