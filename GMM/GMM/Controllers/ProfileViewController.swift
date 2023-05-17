@@ -170,7 +170,6 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     //MARK: - Button Actions -
     
     @IBAction func profileInfoClick(_ sender: UIButton) {
-        print("button clicked")
         let viewController = Utilities.shared.getControllerForStoryboard(storyboard: "Main", controllerIdentifier: "ProfileInformationViewController") as! ProfileInformationViewController
         viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)

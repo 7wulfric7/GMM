@@ -43,6 +43,7 @@
 		22DCF8B1269F815B0077EA83 /* ProfileInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DCF8B0269F815B0077EA83 /* ProfileInformationViewController.swift */; };
 		22DCF8B3269F86E00077EA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22DCF8B2269F86E00077EA83 /* GoogleService-Info.plist */; };
 		A9A91F2A2A136DFA00BDF5CB /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A91F292A136DFA00BDF5CB /* ApiManager.swift */; };
+		A9A91F312A15111D00BDF5CB /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A91F302A15111D00BDF5CB /* MovieViewController.swift */; };
 		B704C071BB8AD89FFE3304E3 /* Pods_GMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014303A9FEC458FDAB59EB78 /* Pods_GMM.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		22DCF8B2269F86E00077EA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30B515EAB175718AEBAA0AED /* Pods-GMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMM.debug.xcconfig"; path = "Target Support Files/Pods-GMM/Pods-GMM.debug.xcconfig"; sourceTree = "<group>"; };
 		A9A91F292A136DFA00BDF5CB /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		A9A91F302A15111D00BDF5CB /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		C527489B2BD6D3E59A9AA1E0 /* Pods-GMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GMM.release.xcconfig"; path = "Target Support Files/Pods-GMM/Pods-GMM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +205,7 @@
 				22586B4326A0C35900DF413E /* ForgotPasswordViewController.swift */,
 				22586B4526A0C37300DF413E /* ResetPasswordInfoViewController.swift */,
 				22586B4726A0D2DC00DF413E /* SearchMoviesViewController.swift */,
+				A9A91F302A15111D00BDF5CB /* MovieViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				22DCF8AD269F77070077EA83 /* WelcomeInfoViewController.swift in Sources */,
 				22DCF88F269F40BD0077EA83 /* HomeViewController.swift in Sources */,
 				22DCF8A9269F5B210077EA83 /* RegisterViewController.swift in Sources */,
+				A9A91F312A15111D00BDF5CB /* MovieViewController.swift in Sources */,
 				22DCF8A2269F45240077EA83 /* User.swift in Sources */,
 				22DCF896269F44070077EA83 /* CustomToastMessage.swift in Sources */,
 				22DCF892269F43940077EA83 /* Utilities.swift in Sources */,

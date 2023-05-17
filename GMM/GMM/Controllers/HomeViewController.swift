@@ -6,7 +6,6 @@
 
 import UIKit
 import Foundation
-import SafariServices
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -41,26 +40,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
         cell.update(with: movies[indexPath.row])
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let theURL = URL(string:"https://api.themoviedb.org/3/movie/\(movies[indexPath.row].id)?api_key=\(API_KEY)") else {
-            print("Invalid URL")
-            return
-        }
-        ApiManager.shared.openInSafari(withURL: theURL) { imdbID in
-            DispatchQueue.main.async {
-                let url = "https://www.imdb.com/title/\(imdbID)"
-                let viewController = SFSafariViewController(url: URL(string: url)!)
-                self.present(viewController, animated: true, completion: nil)
+        
+        
+        let viewController = Utilities.shared.getControllerForStoryboard(storyboard: "Main", controllerIdentifier: "MovieViewController") as! MovieViewController
+        viewController.IMDBMovieID = movies[indexPath.row].id
+        if let posterURL = URL(string: "https://image.tmdb.org/t/p/original/\(movies[indexPath.row].poster_path ?? "")") {
+            ApiManager.shared.getMoviePoster(url: posterURL) { img in
+                DispatchQueue.main.async {
+                    viewController.posterImage.image = img
+                    viewController.releaseDate.text = self.movies[indexPath.row].release_date
+                    viewController.overview.text = self.movies[indexPath.row].overview
+                    viewController.movieTitle.text = self.movies[indexPath.row].title
+                }
             }
         }
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
